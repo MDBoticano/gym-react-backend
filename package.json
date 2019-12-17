@@ -4,8 +4,8 @@
   "description": "For gym-react backend",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "watch": "nodemon index.js",
+    "start": "NODE_ENV=production node index.js",
+    "watch": "NODE_ENV=development nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,11 +15,12 @@
   "author": "Marlo Boticano",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.8.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.4"
   },
   "bugs": {
     "url": "https://github.com/MDBoticano/gym-react-backend/issues"
