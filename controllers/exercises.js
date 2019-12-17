@@ -3,13 +3,17 @@ const Exercise = require('../models/exercise');
 
 // HTTP GET requests
 exercisesRouter.get('/', async (request, response) => {
-  const exercises = await Exercise.find({});
+  const exercises = await Exercise
+    .find({})
+    .populate('tags', 'name');
   response.json(exercises.map(exercise => exercise.toJSON()));
 });
 
 exercisesRouter.get('/:id', async (request, response) => {
   try {
-    const exercise = await Exercise.findById(request.params.id);
+    const exercise = await Exercise
+      .findById(request.params.id)
+      .populate('tags', 'name');
     if (exercise) {
       response.json(exercise.toJSON());
     } else {
@@ -29,6 +33,7 @@ exercisesRouter.post('/', async (request, response) => {
   try {
     const exercise = new Exercise({
       name: body.name,
+      tags: body.tags,
     });
   
     const savedExercise = await exercise.save();
