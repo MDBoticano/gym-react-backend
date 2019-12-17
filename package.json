@@ -15,7 +15,8 @@
   "author": "Marlo Boticano",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.8.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
