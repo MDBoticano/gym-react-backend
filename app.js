@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 // const cors = require('cors');
 
+const tagsRouter = require('./controllers/tags');
 const exercisesRouter = require('./controllers/exercises');
 const workoutsRouter = require('./controllers/workouts');
 
@@ -22,5 +23,6 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
 app.use(bodyParser.json());
 app.use('/api/exercises/', exercisesRouter);
 app.use('/api/workouts/', workoutsRouter);
+app.use('/api/tags/', tagsRouter);
 
 module.exports = app;
