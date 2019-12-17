@@ -25,7 +25,6 @@ exercisesRouter.get('/:id', async (request, response) => {
 exercisesRouter.post('/', async (request, response) => {
 
   const body = request.body;
-  console.log('body:', body);
 
   try {
     const exercise = new Exercise({

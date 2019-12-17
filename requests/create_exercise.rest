@@ -2,5 +2,5 @@ post http://localhost:3001/api/exercises
 Content-Type: application/json
 
 {
-  "name": "Sit Up"
+  "name": "Bicycles"
 }
