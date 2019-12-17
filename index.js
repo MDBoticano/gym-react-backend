@@ -1,12 +1,11 @@
-const express = require('express');
-const app = express();
+const http = require('http');
+const app = require('./app');
+const config = require('./utilities/config');
 
-app.get('/', (request, response) => {
-  response.send('<h1>Gym React Backend</h1>');
+const server = http.createServer(app);
+
+const PORT = config.PORT;
+
+server.listen(PORT, () => {
+  console.log(`Gym React server running on port ${PORT}`);
 });
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Gym-React server running on port ${PORT}`);
-});
-
