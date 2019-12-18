@@ -48,4 +48,25 @@ workoutsRouter.post('/', async (request, response, next) => {
   }
 });
 
+// HTTP PUT requests
+workoutsRouter.put('/:id', async (request, response, next) => {
+  try {
+    const { body } = request;
+
+    const workout = new Workout({
+      name: body.name,
+      exercises: body.exercises,
+    });
+
+    const updatedWorkout = await Workout.findByIdAndUpdate(
+      request.params.id,
+      workout,
+      { new: true },
+    );
+    response.json(updatedWorkout.toJSON());
+  } catch (exception) {
+    next(exception);
+  }
+});
+
 module.exports = workoutsRouter;

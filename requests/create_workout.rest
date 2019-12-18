@@ -2,6 +2,6 @@ post http://localhost:3001/api/workouts
 Content-Type: application/json
 
 {
-  "name": "Chest",
-  "exercises": ["5df95bc5cec0210ea13cef61", "5df94e900625df0b6bd3de7c"]
+  "name": "Back",
+  "exercises": ["5dfa99e1934f511b9827279b"]
 }
