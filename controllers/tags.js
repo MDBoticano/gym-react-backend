@@ -22,7 +22,6 @@ tagsRouter.get('/:id', async (request, response, next) => {
 
 // HTTP POST requests
 tagsRouter.post('/', async (request, response, next) => {
-
   const { body } = request;
 
   try {
