@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator')
+const uniqueValidator = require('mongoose-unique-validator');
 
 const workoutSchema = new mongoose.Schema({
   name: {
@@ -10,7 +10,7 @@ const workoutSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Exercise',
-    }
+    },
   ],
 });
 
@@ -22,7 +22,7 @@ workoutSchema.set('toJSON', {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
     delete returnedObject.__v;
-  }
+  },
 });
 
 module.exports = mongoose.model('Workout', workoutSchema);

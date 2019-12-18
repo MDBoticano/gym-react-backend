@@ -2,6 +2,5 @@ post http://localhost:3001/api/exercises
 Content-Type: application/json
 
 {
-  "name": "Deadlift",
-  "tags": ["5df9655463dac11097e5fca3"]
+  "name": "Sit Ups"
 }

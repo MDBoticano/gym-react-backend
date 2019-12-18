@@ -3,69 +3,64 @@ const Exercise = require('../models/exercise');
 
 // HTTP GET requests
 exercisesRouter.get('/', async (request, response) => {
-  const exercises = await Exercise
-    .find({})
+  const exercises = await Exercise.find({})
     .populate({
       path: 'tags', select: 'name',
     });
-  response.json(exercises.map(exercise => exercise.toJSON()));
+  response.json(exercises.map((exercise) => exercise.toJSON()));
 });
 
-exercisesRouter.get('/:id', async (request, response) => {
+exercisesRouter.get('/:id', async (request, response, next) => {
   try {
-    const exercise = await Exercise
-      .findById(request.params.id)
+    const exercise = await Exercise.findById(request.params.id)
       .populate({
         path: 'tags', select: 'name',
       });
     if (exercise) {
       response.json(exercise.toJSON());
     } else {
-      response.status(404).end()
+      response.status(404).end();
     }
-  }
-  catch (exception) {
-    console.log(exception);
+  } catch (exception) {
+    next(exception);
   }
 });
 
 // HTTP POST requests
-exercisesRouter.post('/', async (request, response) => {
-
-  const body = request.body;
+exercisesRouter.post('/', async (request, response, next) => {
+  const { body } = request;
 
   try {
     const exercise = new Exercise({
       name: body.name,
       tags: body.tags,
     });
-  
+
     const savedExercise = await exercise.save();
     response.json(savedExercise.toJSON());
-  }
-  catch (exception) {
-    console.log(exception);
+  } catch (exception) {
+    next(exception);
   }
 });
 
-//HTTP PUT requests
-exercisesRouter.put('/:id', async (request, response) => {
-  const body = request.body
+// HTTP PUT requests
+exercisesRouter.put('/:id', async (request, response, next) => {
+  const { body } = request;
 
   try {
     const exercise = {
       name: body.name,
       tags: body.tags,
-    }
+    };
 
     const updatedExercise = await Exercise.findByIdAndUpdate(
       request.params.id,
       exercise,
-      {new: true}
+      { new: true },
     );
-    response.json(updatedExercise.toJSON())
-  } catch(exception) {
-    console.log(exception);
+    response.json(updatedExercise.toJSON());
+  } catch (exception) {
+    next(exception);
   }
 });
 
