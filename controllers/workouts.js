@@ -2,19 +2,38 @@ const workoutsRouter = require('express').Router();
 const Workout = require('../models/workout');
 
 // HTTP GET requests
-workoutsRouter.get('/', async (request,response) => {
-  const workouts = await Workout
-    .find({})
+workoutsRouter.get('/', async (request, response) => {
+  const workouts = await Workout.find({})
     .populate({
-      path: 'exercises', select: 'name',
-      populate: { path: 'tags', select: 'name' }
+      path: 'exercises',
+      select: 'name',
+      populate: { path: 'tags', select: 'name' },
     });
-  response.json(workouts.map(workout => workout.toJSON()));
+  response.json(workouts.map((workout) => workout.toJSON()));
+});
+
+workoutsRouter.get('/:id', async (request, response, next) => {
+  try {
+    const workout = await Workout.findById(request.params.id)
+      .populate({
+        path: 'exercises',
+        select: 'name',
+        populate: { path: 'tags', select: 'name' },
+      });
+
+    if (workout) {
+      response.json(workout.toJSON());
+    } else {
+      response.status(404).end();
+    }
+  } catch (exception) {
+    next(exception);
+  }
 });
 
 // HTTP POST requests
-workoutsRouter.post('/', async (request, response) => {
-  const body = request.body;
+workoutsRouter.post('/', async (request, response, next) => {
+  const { body } = request;
 
   try {
     const workout = new Workout({
@@ -24,9 +43,8 @@ workoutsRouter.post('/', async (request, response) => {
 
     const savedWorkout = await workout.save();
     response.json(savedWorkout.toJSON());
-  }
-  catch (exception) {
-    console.log(exception);
+  } catch (exception) {
+    next(exception);
   }
 });
 

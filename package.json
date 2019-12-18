@@ -6,7 +6,8 @@
   "scripts": {
     "start": "NODE_ENV=production node index.js",
     "watch": "NODE_ENV=development nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -15,12 +16,16 @@
   "author": "Marlo Boticano",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.8.1",
     "mongoose-unique-validator": "^2.0.3"
   },
   "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
     "nodemon": "^1.19.4"
   },
   "bugs": {
