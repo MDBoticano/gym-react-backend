@@ -5,7 +5,10 @@ const Workout = require('../models/workout');
 workoutsRouter.get('/', async (request,response) => {
   const workouts = await Workout
     .find({})
-    .populate('exercises', 'name tags');
+    .populate({
+      path: 'exercises', select: 'name',
+      populate: { path: 'tags', select: 'name' }
+    });
   response.json(workouts.map(workout => workout.toJSON()));
 });
 
