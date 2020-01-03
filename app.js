@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -22,6 +23,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
     logger.info('error connecting to MongoDB:', error.message);
   });
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(middleware.requestLogger);
 

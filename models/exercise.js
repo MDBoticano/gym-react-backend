@@ -6,6 +6,10 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String,
+    default: '',
+  },
   tags: [
     {
       type: mongoose.Schema.Types.ObjectId,

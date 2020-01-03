@@ -33,6 +33,7 @@ exercisesRouter.post('/', async (request, response, next) => {
   try {
     const exercise = new Exercise({
       name: body.name,
+      description: body.description,
       tags: body.tags,
     });
 
@@ -50,6 +51,7 @@ exercisesRouter.put('/:id', async (request, response, next) => {
   try {
     const exercise = {
       name: body.name,
+      description: body.description,
       tags: body.tags,
     };
 
