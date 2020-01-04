@@ -66,4 +66,14 @@ exercisesRouter.put('/:id', async (request, response, next) => {
   }
 });
 
+// HTTP DELETE requests
+exercisesRouter.delete('/:id', async (request, response, next) => {
+  try {
+    await Exercise.findByIdAndRemove(request.params.id);
+    response.status(204).end();
+  } catch (exception) {
+    next(exception);
+  }
+});
+
 module.exports = exercisesRouter;
