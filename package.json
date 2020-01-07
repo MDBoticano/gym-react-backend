@@ -4,8 +4,8 @@
   "description": "For gym-react backend",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node index.js",
-    "watch": "NODE_ENV=development nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "watch": "cross-env NODE_ENV=development nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ."
   },
@@ -24,6 +24,7 @@
     "mongoose-unique-validator": "^2.0.3"
   },
   "devDependencies": {
+    "cross-env": "^6.0.3",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
