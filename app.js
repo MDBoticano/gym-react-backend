@@ -23,6 +23,8 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
     logger.info('error connecting to MongoDB:', error.message);
   });
 
+app.use(express.static('build'));
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(middleware.requestLogger);
