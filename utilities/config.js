@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const {
-  PORT,
+  PORT = 3001,
   MONGODB_URI,
 } = process.env;
 
