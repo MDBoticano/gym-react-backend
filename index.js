@@ -4,7 +4,7 @@ const config = require('./utilities/config');
 
 const server = http.createServer(app);
 
-const { PORT, MONGODB_URI } = config;
+const { PORT } = config;
 
 server.listen(PORT, () => {
   // eslint-disable-next-line
